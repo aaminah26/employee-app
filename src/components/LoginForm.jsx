@@ -12,6 +12,7 @@ function LoginForm() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
 
     try {
@@ -22,10 +23,14 @@ function LoginForm() {
 
       localStorage.setItem("role", res.data.role);
 
+      localStorage.setItem("username", data.username);
+
       navigate("/employees");
 
     } catch (err) {
+
       alert("Invalid username or password");
+
     }
   };
 

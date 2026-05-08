@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import API from "../apis/client";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function EmployeeList() {
 
   const [employees, setEmployees] = useState([]);
 
   const role = localStorage.getItem("role");
+
+  const username = localStorage.getItem("username");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchEmployees();
@@ -40,6 +44,15 @@ function EmployeeList() {
     }
   };
 
+  const logout = () => {
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("username");
+
+    navigate("/login");
+  };
+
   return (
     <div className="page">
 
@@ -47,11 +60,23 @@ function EmployeeList() {
 
         <h1>Employees</h1>
 
-        {role === "admin" && (
-          <Link to="/employees/create">
-            <button>Add Employee</button>
+        <div style={{ display: "flex", gap: "10px" }}>
+
+          {role === "admin" && (
+            <Link to="/employees/create">
+              <button>Add Employee</button>
+            </Link>
+          )}
+
+          <Link to="/departments">
+            <button>Departments</button>
           </Link>
-        )}
+
+          <button onClick={logout}>
+            Logout
+          </button>
+
+        </div>
 
       </div>
 
@@ -65,29 +90,37 @@ function EmployeeList() {
 
           <p>Designation: {emp.designation}</p>
 
+          <p>Department ID: {emp.department_id}</p>
+
           <p>Phone: {emp.phone}</p>
 
-          {role === "admin" && (
-            <div className="actions">
+          <div className="actions">
 
+            {/* ADMIN CONTROLS */}
+            {role === "admin" && (
+              <>
+                <Link to={`/employees/edit/${emp.id}`}>
+                  <button>Edit</button>
+                </Link>
+
+                <button onClick={() => deleteEmployee(emp.id)}>
+                  Delete
+                </button>
+              </>
+            )}
+
+            {/* EMPLOYEE CAN EDIT ONLY OWN PROFILE */}
+            {role === "user" && emp.name === username && (
               <Link to={`/employees/edit/${emp.id}`}>
-                <button>Edit</button>
+                <button>Edit Profile</button>
               </Link>
+            )}
 
-              <button onClick={() => deleteEmployee(emp.id)}>
-                Delete
-              </button>
-
-            </div>
-          )}
+          </div>
 
         </div>
 
       ))}
-
-      <Link to="/departments">
-        <button>Departments</button>
-      </Link>
 
     </div>
   );
