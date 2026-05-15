@@ -52,6 +52,12 @@ function CreateDepartmentPage() {
         <button type="submit">
           Create
         </button>
+        <button
+  type="button"
+  onClick={() => navigate("/departments")}
+>
+  Cancel
+</button>
 
       </form>
 

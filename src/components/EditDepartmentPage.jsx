@@ -81,6 +81,12 @@ function EditDepartmentPage() {
         <button type="submit">
           Update Department
         </button>
+        <button
+  type="button"
+  onClick={() => navigate("/departments")}
+>
+  Cancel
+</button>
 
       </form>
 

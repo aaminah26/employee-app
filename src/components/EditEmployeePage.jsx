@@ -108,6 +108,12 @@ function EditEmployeePage() {
         <button type="submit">
           Update Employee
         </button>
+        <button
+  type="button"
+  onClick={() => navigate("/employees")}
+>
+  Cancel
+</button>
 
       </form>
 

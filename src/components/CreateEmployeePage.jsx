@@ -74,8 +74,15 @@ function CreateEmployeePage() {
         />
 
         <button type="submit">
-          Create
-        </button>
+  Create
+</button>
+
+<button
+  type="button"
+  onClick={() => navigate("/employees")}
+>
+  Cancel
+</button>
 
       </form>
 
