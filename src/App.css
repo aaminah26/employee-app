@@ -1,11 +1,47 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
   margin:0;
-  font-family:'Poppins', Arial, sans-serif;
-  background:linear-gradient(135deg,#f5e9ff,#efe1ff,#f8f3ff);
-  min-height:100vh;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* Center Container */
+body{
+  font-family:'Poppins',sans-serif;
+  min-height:100vh;
+  background:#f4ecff;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* Background Shapes */
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  border-radius:50%;
+  z-index:-1;
+}
+
+body::before{
+  width:320px;
+  height:320px;
+  background:linear-gradient(135deg,#c084fc,#9333ea);
+  top:-120px;
+  left:-120px;
+  opacity:0.25;
+}
+
+body::after{
+  width:260px;
+  height:260px;
+  background:linear-gradient(135deg,#e879f9,#7e22ce);
+  bottom:-100px;
+  right:-80px;
+  opacity:0.25;
+}
+
+/* Container */
 .container{
   display:flex;
   justify-content:center;
@@ -14,127 +50,241 @@ body{
   padding:20px;
 }
 
-/* Form Styling */
+/* Modern Form */
 form{
-  background:rgba(255,255,255,0.95);
-  padding:35px;
-  width:380px;
-  border-radius:20px;
+  width:100%;
+  max-width:420px;
+  background:#ffffff;
+  border-radius:30px;
+  padding:40px 28px;
   display:flex;
   flex-direction:column;
-  gap:18px;
-  box-shadow:0 10px 30px rgba(128,0,128,0.15);
-  backdrop-filter:blur(10px);
+  gap:20px;
+  position:relative;
+  box-shadow:
+    0 15px 40px rgba(126,34,206,0.12),
+    0 4px 10px rgba(126,34,206,0.08);
+}
+
+/* Purple Top Line */
+form::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:8px;
+  border-radius:30px 30px 0 0;
+  background:linear-gradient(90deg,#9333ea,#d946ef,#9333ea);
 }
 
 /* Heading */
 form h2{
   text-align:center;
-  color:#6a0dad;
-  margin-bottom:10px;
-  font-size:28px;
+  color:#6b21a8;
+  font-size:30px;
+  font-weight:700;
+  margin-top:10px;
 }
 
-/* Input Fields */
-input{
-  padding:14px;
+/* Inputs */
+input,
+textarea,
+select{
+  width:100%;
+  padding:15px 18px;
   border:none;
-  outline:none;
-  border-radius:12px;
-  background:#f6efff;
+  border-radius:16px;
+  background:#f8f2ff;
   font-size:15px;
-  transition:0.3s;
-  box-shadow:inset 0 2px 5px rgba(0,0,0,0.05);
+  color:#4b145f;
+  transition:0.3s ease;
+  border:2px solid transparent;
 }
 
-input:focus{
-  background:white;
-  border:2px solid #b266ff;
-  box-shadow:0 0 10px rgba(178,102,255,0.3);
+input::placeholder,
+textarea::placeholder{
+  color:#9f7aea;
 }
 
-/* Buttons */
+input:focus,
+textarea:focus,
+select:focus{
+  background:#fff;
+  border-color:#a855f7;
+  box-shadow:0 0 0 5px rgba(168,85,247,0.12);
+  transform:translateY(-1px);
+}
+
+/* Button */
 button{
-  padding:13px;
   border:none;
-  border-radius:12px;
-  background:linear-gradient(135deg,#8e2de2,#c471ed);
+  border-radius:16px;
+  padding:15px;
+  background:linear-gradient(135deg,#9333ea,#c026d3);
   color:white;
   font-size:16px;
-  font-weight:bold;
+  font-weight:600;
   cursor:pointer;
-  transition:0.3s;
-  box-shadow:0 5px 15px rgba(142,45,226,0.3);
+  transition:0.3s ease;
+  letter-spacing:0.5px;
 }
 
 button:hover{
-  transform:translateY(-2px);
-  background:linear-gradient(135deg,#7b1fd3,#b85be8);
-  box-shadow:0 8px 20px rgba(142,45,226,0.4);
+  transform:translateY(-3px);
+  box-shadow:0 12px 22px rgba(147,51,234,0.28);
 }
 
-/* Page Layout */
+/* Dashboard Layout */
 .page{
-  padding:40px;
+  padding:25px;
+}
+
+/* Topbar */
+.topbar{
+  background:white;
+  border-radius:24px;
+  padding:20px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+  box-shadow:0 8px 24px rgba(147,51,234,0.08);
+  border:1px solid #f0e4ff;
+}
+
+.topbar h1{
+  color:#6b21a8;
+  font-size:24px;
 }
 
 /* Cards */
 .card{
   background:white;
-  padding:25px;
+  border-radius:24px;
+  padding:24px;
   margin-bottom:20px;
-  border-radius:18px;
-  box-shadow:0 8px 20px rgba(128,0,128,0.08);
-  transition:0.3s;
-  border-left:6px solid #b266ff;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 8px 24px rgba(147,51,234,0.08);
+  transition:0.3s ease;
+  border:1px solid #f3e8ff;
+}
+
+/* Card Glow */
+.card::before{
+  content:"";
+  position:absolute;
+  top:-40px;
+  right:-40px;
+  width:120px;
+  height:120px;
+  background:rgba(192,132,252,0.15);
+  border-radius:50%;
 }
 
 .card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 12px 25px rgba(128,0,128,0.15);
+  transform:translateY(-5px);
+  box-shadow:0 14px 30px rgba(147,51,234,0.14);
 }
 
-/* Topbar */
-.topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
-  background:white;
-  padding:20px;
-  border-radius:18px;
-  box-shadow:0 5px 15px rgba(128,0,128,0.08);
+.card h3{
+  color:#7e22ce;
+  margin-bottom:10px;
+  position:relative;
+  z-index:1;
+}
+
+.card p{
+  color:#6b7280;
+  line-height:1.7;
+  position:relative;
+  z-index:1;
 }
 
 /* Action Buttons */
 .actions{
   display:flex;
   gap:12px;
+  flex-wrap:wrap;
 }
 
-/* Secondary Buttons */
 .actions button{
-  padding:10px 16px;
+  padding:11px 18px;
   font-size:14px;
+  border-radius:14px;
 }
 
 /* Delete Button */
 .actions button:last-child{
-  background:linear-gradient(135deg,#ff4b91,#ff6fa5);
+  background:linear-gradient(135deg,#ff4d8d,#ff006e);
 }
 
 .actions button:last-child:hover{
-  background:linear-gradient(135deg,#ff2e7a,#ff5c99);
+  box-shadow:0 10px 20px rgba(255,0,110,0.25);
 }
 
-/* Responsive */
-@media(max-width:500px){
-  form{
-    width:100%;
+/* Mobile Responsive */
+@media(max-width:768px){
+
+  .page{
+    padding:16px;
   }
 
   .topbar{
     flex-direction:column;
+    align-items:flex-start;
     gap:15px;
+    padding:18px;
+  }
+
+  .actions{
+    width:100%;
+  }
+
+  .actions button{
+    flex:1;
+  }
+
+  form{
+    padding:35px 22px;
+    border-radius:26px;
+  }
+}
+
+@media(max-width:500px){
+
+  .container{
+    padding:14px;
+  }
+
+  form{
+    max-width:100%;
+    padding:30px 18px;
+    gap:16px;
+  }
+
+  form h2{
+    font-size:26px;
+  }
+
+  input,
+  textarea,
+  select{
+    padding:14px;
+    font-size:14px;
+  }
+
+  button{
+    padding:14px;
+    font-size:15px;
+  }
+
+  .card{
+    padding:20px;
+  }
+
+  .topbar h1{
+    font-size:20px;
   }
 }
