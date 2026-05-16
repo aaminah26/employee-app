@@ -70,9 +70,19 @@ function DepartmentList() {
                 <button>Edit</button>
               </Link>
 
-              <button onClick={() => deleteDepartment(dep.id)}>
-                Delete
-              </button>
+              <button
+  onClick={() => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this department?"
+    );
+
+    if (confirmDelete) {
+      deleteDepartment(dep.id);
+    }
+  }}
+>
+  Delete
+</button>
 
             </div>
           )}

@@ -103,9 +103,19 @@ function EmployeeList() {
                   <button>Edit</button>
                 </Link>
 
-                <button onClick={() => deleteEmployee(emp.id)}>
-                  Delete
-                </button>
+                <button
+  onClick={() => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this employee?"
+    );
+
+    if (confirmDelete) {
+      deleteEmployee(emp.id);
+    }
+  }}
+>
+  Delete
+</button>
               </>
             )}
 
